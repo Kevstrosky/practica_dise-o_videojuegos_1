@@ -1,3 +1,6 @@
+//Kevin Ochoa Guerrero
+//218203365
+
 import javax.swing.*;
 
 public class Etiqueta extends JLabel implements Runnable {
