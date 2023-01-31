@@ -13,8 +13,8 @@ public class HiloHijoT2 implements Runnable {
     public void run(){
         for(int i = 0; i <= 10; i++){
             try{
+                System.out.println("Hilo ["+name+"]: "+i);
                 Thread.sleep(time);
-                return i;
             }catch(Exception e){}
         } //end for
     } //end run

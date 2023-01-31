@@ -1,3 +1,6 @@
+//Kevin Ochoa Guerrero
+//a218203365@unison.mx
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,17 +19,20 @@ public class Ventana extends JFrame {
         ActionListener actionListener = new ActionListener() {
         public void actionPerformed(ActionEvent event) {
         new Thread(() -> {
+         boton1.setEnabled(false);
          for (int i = 1; i <= 10; i++) {
             try {
-               Thread.sleep(1000);
+               Thread.sleep(100);
             } catch (InterruptedException e) {
                e.printStackTrace();
             }
             texto1.setText(String.valueOf(i));
          }
+                        boton1.setEnabled(true);
       }).start();
         }
         };
+        
          boton1.addActionListener(actionListener);
         texto1.setFont(font1);
         boton1.setFont(font2);
