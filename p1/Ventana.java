@@ -15,11 +15,12 @@ public class Ventana extends JFrame {
         Font font1 = new Font("Arial", 1, 24);
         Font font2 = new Font("Arial", 1, 12);
         JLabel texto1 = new JLabel("0");
+        JLabel texto2 = new JLabel("0");
         JButton boton1 = new JButton("Iniciar contador");
         ActionListener actionListener = new ActionListener() {
         public void actionPerformed(ActionEvent event) {
+        boton1.setEnabled(false);
         new Thread(() -> {
-         boton1.setEnabled(false);
          for (int i = 1; i <= 10; i++) {
             try {
                Thread.sleep(100);
@@ -28,8 +29,19 @@ public class Ventana extends JFrame {
             }
             texto1.setText(String.valueOf(i));
          }
-                        boton1.setEnabled(true);
       }).start();
+      new Thread(() -> {
+         for (int i = 1; i <= 10; i++) {
+            try {
+               Thread.sleep(500);
+            } catch (InterruptedException e) {
+               e.printStackTrace();
+            }
+            texto2.setText(String.valueOf(i));
+         }
+                boton1.setEnabled(true);
+      }).start();
+
         }
         };
         
@@ -37,9 +49,12 @@ public class Ventana extends JFrame {
         texto1.setFont(font1);
         boton1.setFont(font2);
         texto1.setBounds(10,10,50,25);
-        boton1.setBounds(10,50,150,35);
+        boton1.setBounds(50,35,150,35);
+        texto2.setFont(font1);
+        texto2.setBounds(10,70,50,25);
 
         add(texto1);
+        add(texto2);
         add(boton1);
         setTitle("Mi ventana");
         setSize(300,300);
