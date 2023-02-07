@@ -10,15 +10,22 @@ public class Ventana extends JFrame {
     private void initValues(){
         Font font1 = new Font("Arial", 1, 22);
         JLabel texto1 = new JLabel("0");
+        LabelKey lkey = new LabelKey("0");
         JButton btnStart = new JButton("Start");
 
+        lkey.setFocusable(true);
+        btnStart.setFocusable(false);
 
+        lkey.setFont(font1);
         texto1.setFont(font1);
         texto1.setBounds(10,10,50,25);
-        btnStart.setBounds(10,40,75,25);
+        lkey.setBounds(10,40,50,25);
+        btnStart.setBounds(10,80,75,25);
 
         ActionListener listener = new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                Thread tkey = new Thread(lkey);
+                tkey.start();
                 MyThread t = new MyThread();
                 t.texto1 = texto1;
                 t.start();
@@ -27,6 +34,7 @@ public class Ventana extends JFrame {
         btnStart.addActionListener(listener);
         add(btnStart);
         add(texto1);
+        add(lkey);
         setTitle("Ventana 2");
         setSize(300,300);
         setResizable(false);

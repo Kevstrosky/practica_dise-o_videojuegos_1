@@ -7,9 +7,9 @@ public class MyThread extends Thread {
     public void run(){
         while(true){
                 try{
-                    Thread.sleep(10);
-                    if(giro==true){
+                    Thread.sleep(2);
                         texto1.setBounds(n,10,50,25);
+                    if(giro==true){
                         n++;
                         System.out.println(n);
                         if(n == 260){
@@ -17,7 +17,6 @@ public class MyThread extends Thread {
                         }
                     }
                     if(giro==false){
-                        texto1.setBounds(n,10,50,25);
                         n--;
                         System.out.println(n);
                         if(n == 10){
