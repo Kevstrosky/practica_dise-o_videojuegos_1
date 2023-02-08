@@ -14,7 +14,7 @@ public class LabelKey extends JLabel implements Runnable{
                     public void keyTyped(KeyEvent ke){    
                     }
                     public void keyPressed(KeyEvent ke){
-                        if(ke.getKeyCode() == ke.VK_RIGHT  && posX < 270){
+                        if(ke.getKeyCode() == ke.VK_RIGHT && posX < 270){
                             setBounds(posX,40,50,25);
                             posX+=3;
                         }
