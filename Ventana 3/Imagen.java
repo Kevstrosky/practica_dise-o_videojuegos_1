@@ -4,10 +4,14 @@ public class Imagen extends JLabel implements Runnable {
 
     ImageIcon icon;
     String url, url2;
+    int tiempo;
+    int posY;
 
-    public Imagen(String url, String url2){
+    public Imagen(String url, String url2, int tiempo, int posY){
         this.url = url;
         this.url2 = url2;
+        this.tiempo = tiempo;
+        this.posY = posY;
 
         icon = new ImageIcon(this.getClass().getResource(url));
         setIcon(icon);
@@ -20,10 +24,10 @@ public class Imagen extends JLabel implements Runnable {
                  icon = new ImageIcon(this.getClass().getResource(url));
             }
             setIcon(icon);
-            setBounds(x,40,42,42);
+            setBounds(x,posY,42,42);
 
             try{
-                    Thread.sleep(200);
+                    Thread.sleep(tiempo);
             }catch(Exception e){};
 
         } //end for
