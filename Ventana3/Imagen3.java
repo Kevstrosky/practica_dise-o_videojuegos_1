@@ -36,11 +36,11 @@ public class Imagen3 extends JLabel implements Runnable, KeyListener {
 			changeImg = true;
 		}
 		
-		if(posX >= 120 && posXBack > -221) {
+		if(posX >= 120 && posXBack > -220) {
 			posXBack-=power;
 			background.setBounds(posXBack, 0, 510, 72);
 			setBounds(120,11,42,42);
-		} else {
+		} else if(posX <= 250) {
 			posX += power;
 			setBounds(posX,11,42,42);
 		}	
