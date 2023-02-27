@@ -1,13 +1,14 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.geom.*;
 
 public class Imagen3 extends JLabel implements Runnable, KeyListener {
 
 	private String url1, url2;
 	private ImageIcon icon;
-	private boolean changeImg = false, runStatus = false, right = false, shift = false;
+	private boolean changeImg = false, runStatus = false, right = false, shift = false, up = false;
 	private int posX = 10, posXBack = 0;
-	JLabel background;
+	JLabel background, wall1;
 
 	public Imagen3(String url1, String url2) {
 		this.url1 = url1;
@@ -24,8 +25,45 @@ public class Imagen3 extends JLabel implements Runnable, KeyListener {
 			
 			if(right && shift) { moveImage(10, 40); }
 			if(right) { moveImage(1, 100); }
+			if(right && up) {saltote(40);}
+			if(up){ saltito(20);}
+			/*
+			if(interseccion()){
+				break;
+			}
+			*/
 		} //end while
 	} //end run
+
+/*
+	private boolean interseccion(){
+		Area areaWall1 = new Area(wall1.getBounds());
+		Area areaMario = new Area(this.getBounds());
+
+		return areaWall1.intersects(areaMario.getBounds2D());
+	}
+*/
+	private void saltito(int time){
+		for (int y = 11; y >= 0; y--){
+			setBounds(getX(), y, 42,42);
+				try{ Thread.sleep(time); } catch(Exception e){}
+		}
+		for(int y = getY(); y <= 11; y++){
+			setBounds(getX(), y, 42, 42);
+			try { Thread.sleep(time); } catch(Exception e){}
+		}
+	}
+
+	private void saltote(int time){
+			for (int y = 11; y >= 0; y--){
+			setBounds(posX+=5, y, 42,42);
+				try{ Thread.sleep(time); } catch(Exception e){}
+		}
+		for(int y = getY(); y <= 11; y++){
+			setBounds(posX+=5, y, 42, 42);
+			try { Thread.sleep(time); } catch(Exception e){}
+		}
+	}
 	
 	private void moveImage(int power, int time) {
 		if(changeImg) {
@@ -55,6 +93,8 @@ public class Imagen3 extends JLabel implements Runnable, KeyListener {
 		if(runStatus) {
 			if(ke.getKeyCode() == KeyEvent.VK_RIGHT) { right = true; }
 			if(ke.getKeyCode() == KeyEvent.VK_SHIFT) { shift = true; }
+			if(ke.getKeyCode() == KeyEvent.VK_UP) { up = true; }
+
 		}
 	} //end keyPressed
 	
@@ -62,6 +102,8 @@ public class Imagen3 extends JLabel implements Runnable, KeyListener {
 		if(runStatus) {
 			if(ke.getKeyCode() == KeyEvent.VK_RIGHT) { right = false; }
 			if(ke.getKeyCode() == KeyEvent.VK_SHIFT) { shift = false; }
+			if(ke.getKeyCode() == KeyEvent.VK_UP) { up = false; }
+
 		}
 	}
 
